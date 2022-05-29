@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    
+
     const formInput = document.getElementById("inputBook");
     const formSearch = document.getElementById("searchBook");
 
@@ -23,9 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isStorageSupported()) {
         fetchJson();
     }
-
 });
 
 document.addEventListener("onjsonfetched", function () {
     renderFromBooks();
-})
+});

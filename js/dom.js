@@ -1,7 +1,7 @@
-const INCOMPLETE_BOOK = "incompleteBookshelfList"
-const COMPLETE_BOOK = "completeBookshelfList"
+const INCOMPLETE_BOOK = "incompleteBookshelfList";
+const COMPLETE_BOOK = "completeBookshelfList";
 
-const addBook = () => {
+function addBook() {
     const idBook = +new Date();
     const inputBookTitle = document.getElementById("inputBookTitle").value;
     const inputBookAuthor = document.getElementById("inputBookAuthor").value;
@@ -22,10 +22,10 @@ const addBook = () => {
     updateJson();
 }
 
-const createBook = (idBook, inputBookTitle, inputBookAuthor, inputBookYear, inputBookIsComplete) => {
+function createBook(idBook, inputBookTitle, inputBookAuthor, inputBookYear, inputBookIsComplete) {
     const book = document.createElement("article");
     book.setAttribute("id", idBook)
-    book.classList.add("card", "my-3", "cardBook");
+    book.classList.add("card", "my-3");
 
     const bookTitle = document.createElement("h5");
     bookTitle.classList.add("text-truncate");
@@ -33,7 +33,7 @@ const createBook = (idBook, inputBookTitle, inputBookAuthor, inputBookYear, inpu
     bookTitle.innerText = inputBookTitle;
 
     const bookAuthor = document.createElement("span");
-    bookAuthor.classList.add("text-truncate");
+    bookAuthor.classList.add("text-truncate", "d-inline-block");
     bookAuthor.style.maxWidth = "200px";
     bookAuthor.innerText = inputBookAuthor;
 
@@ -43,7 +43,7 @@ const createBook = (idBook, inputBookTitle, inputBookAuthor, inputBookYear, inpu
     const br = document.createElement("br");
 
     const cardContainer = document.createElement("div");
-    cardContainer.classList.add("card-body", "border-start", "border-info", "d-flex", "justify-content-between");
+    cardContainer.classList.add("card-body", "border-start", "border-4", "border-info", "d-flex", "justify-content-between");
 
     const cardContent = document.createElement("div");
     cardContent.classList.add("card-content");
@@ -58,7 +58,7 @@ const createBook = (idBook, inputBookTitle, inputBookAuthor, inputBookYear, inpu
     return book;
 }
 
-const addAction = (inputBookIsComplete, idBook) => {
+function addAction(inputBookIsComplete, idBook) {
     const cardActions = document.createElement("div");
 
     const actionDelete = createActionDelete(idBook);
@@ -68,15 +68,15 @@ const addAction = (inputBookIsComplete, idBook) => {
     cardActions.append(actionDelete);
 
     if (inputBookIsComplete) {
-        cardActions.append(actionUndo)
+        cardActions.append(actionUndo);
     } else {
-        cardActions.append(actionRead)
+        cardActions.append(actionRead);
     }
 
-    return cardActions
+    return cardActions;
 }
 
-const createActionDelete = (idBook) => {
+function createActionDelete(idBook) {
     const actionDelete = document.createElement("button");
     actionDelete.classList.add("btn", "btn-sm", "btn-outline-danger", "mx-1");
     actionDelete.innerHTML = '<i class="bi bi-x"></i>';
@@ -96,10 +96,10 @@ const createActionDelete = (idBook) => {
         }
     });
 
-    return actionDelete
+    return actionDelete;
 }
 
-const createActionRead = (idBook) => {
+function createActionRead(idBook) {
     const action = document.createElement("button");
     action.classList.add("btn", "btn-sm", "btn-outline-primary");
     action.innerHTML = '<i class="bi bi-check"></i>';
@@ -126,12 +126,12 @@ const createActionRead = (idBook) => {
     return action;
 }
 
-const createActionUndo = (idBook) => {
+function createActionUndo(idBook) {
     const action = document.createElement("button");
     action.classList.add("btn", "btn-sm", "btn-outline-secondary");
     action.innerHTML = '<i class="bi bi-arrow-counterclockwise"></i>';
 
-    action.addEventListener("click", function () { 
+    action.addEventListener("click", function () {
         const cardParent = document.getElementById(idBook);
 
         const bookTitle = cardParent.querySelector(".card-content > h5").innerText;
@@ -153,7 +153,7 @@ const createActionUndo = (idBook) => {
     return action;
 }
 
-const bookSearch = (keyword) => {
+function bookSearch(keyword) {
     const filter = keyword.toUpperCase();
     const titles = document.getElementsByTagName("h5");
 
@@ -161,9 +161,9 @@ const bookSearch = (keyword) => {
         const titlesText = titles[i].textContent || titles[i].innerText;
 
         if (titlesText.toUpperCase().indexOf(filter) > -1) {
-            titles[i].closest(".cardBook").style.display = "";
+            titles[i].closest(".card").style.display = "";
         } else {
-            titles[i].closest(".cardBook").style.display = "none";
+            titles[i].closest(".card").style.display = "none";
         }
     }
 }

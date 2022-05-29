@@ -34,7 +34,7 @@ function composeBookObject(id, title, author, year, isComplete) {
 
 function renderFromBooks() {
     for (book of books) {
-        const newBook = createBook(book.id, book.title, book.year, book.isComplete);
+        const newBook = createBook(book.id, book.title, book.author, book.year, book.isComplete);
 
         if (book.isComplete) {
             document.getElementById(COMPLETE_BOOK).append(newBook);
