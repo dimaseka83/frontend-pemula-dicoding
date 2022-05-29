@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isStorageSupported()) {
         fetchJson();
     }
+
 });
 
 document.addEventListener("onjsonfetched", function () {

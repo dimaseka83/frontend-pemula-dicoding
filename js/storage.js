@@ -12,7 +12,7 @@ function isStorageSupported() {
 }
 
 function updateJson() {
-    if (isStorageSupported) {
+    if (isStorageSupported || loadDataFromStorage()) {
         localStorage.setItem(BOOKS_KEY, JSON.stringify(books));
     }
 }
@@ -23,6 +23,7 @@ function fetchJson() {
     if (data !== null) {
         books = data;
     }
+    document.dispatchEvent(new Event("onjsonfetched"));
 }
 
 function composeBookObject(id, title, author, year, isComplete) {
